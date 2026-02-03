@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import seaborn as sns
 from sklearn.metrics import (accuracy_score, roc_auc_score, precision_score,
                              recall_score, f1_score, matthews_corrcoef,
                              confusion_matrix, classification_report)
@@ -183,10 +182,10 @@ if uploaded_file is not None:
             cm = confusion_matrix(y_true, y_pred)
             
             fig, ax = plt.subplots(figsize=(8, 6))
-            sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
-                       xticklabels=['Retained', 'Churned'],
-                       yticklabels=['Retained', 'Churned'],
-                       ax=ax)
+            # sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+            #            xticklabels=['Retained', 'Churned'],
+            #            yticklabels=['Retained', 'Churned'],
+            #            ax=ax)
             ax.set_xlabel('Predicted')
             ax.set_ylabel('Actual')
             ax.set_title(f'Confusion Matrix - {selected_model}')
