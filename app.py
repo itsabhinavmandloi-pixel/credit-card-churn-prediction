@@ -65,7 +65,32 @@ if uploaded_file:
     col6.metric("MCC", f"{selected['MCC']:.4f}")
     
     # FEATURE 4: Confusion Matrix
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import seaborn as sns
+# Feature 4: Confusion Matrix Visualization
+st.subheader("🔢 Confusion Matrix")
+
+# Sample confusion matrix values (replace with your actual predictions)
+cm = np.array([[1520, 32],
+               [21, 427]])
+
+# Create heatmap
+fig, ax = plt.subplots(figsize=(6, 5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+            xticklabels=['Retain', 'Churn'],
+            yticklabels=['Retain', 'Churn'],
+            ax=ax, cbar_kws={'label': 'Count'})
+
+ax.set_xlabel('Predicted Label')
+ax.set_ylabel('Actual Label')
+ax.set_title(f'Confusion Matrix - {model}')
+
+# Display in Streamlit
+st.pyplot(fig)
+
+# Also show text interpretation
+st.text(f"""
+Classification Report:
+- True Positives (Churn correctly predicted): {cm[1,1]}
+- True Negatives (Retain correctly predicted): {cm[0,0]}
+- False Positives (Predicted Churn, Actually Retain): {cm[0,1]}
+- False Negatives (Predicted Retain, Actually Churn): {cm[1,0]}
+""")
