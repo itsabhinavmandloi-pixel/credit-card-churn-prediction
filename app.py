@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 st.set_page_config(page_title="Credit Card Churn Prediction", page_icon="🎯")
 
@@ -15,7 +19,7 @@ st.markdown("""
 - **GitHub:** Complete implementation available
 """)
 
-# FEATURE 1: CSV Upload (1 mark)
+# FEATURE 1: CSV Upload
 st.header("📁 Upload Customer Data")
 uploaded_file = st.file_uploader("Upload CSV file", type=['csv'])
 
@@ -26,7 +30,7 @@ if uploaded_file:
     st.subheader("📊 Data Preview")
     st.dataframe(df.head(10))
     
-    # FEATURE 2: Model Selection (1 mark)
+    # FEATURE 2: Model Selection
     st.header("🤖 Select Classification Model")
     model = st.selectbox(
         "Choose a model:",
@@ -36,7 +40,7 @@ if uploaded_file:
     
     st.info(f"**Selected Model:** {model}")
     
-    # FEATURE 3: Display Evaluation Metrics (1 mark)
+    # FEATURE 3: Display Evaluation Metrics
     st.header("📈 Model Performance Metrics")
     
     metrics_data = {
@@ -60,37 +64,8 @@ if uploaded_file:
     col5.metric("F1 Score", f"{selected['F1']:.4f}")
     col6.metric("MCC", f"{selected['MCC']:.4f}")
     
-    # FEATURE 4: Confusion Matrix (1 mark)
-    st.subheader("🔢 Sample Confusion Matrix")
-    
-    st.text("""
-    Confusion Matrix for Test Set:
-    
-                 Predicted
-                 Retain  Churn
-    Actual Retain  1520     32
-           Churn     21    427
-    
-    Classification Report:
-    - True Positives (Churn correctly predicted): 427
-    - True Negatives (Retain correctly predicted): 1520
-    - False Positives: 32
-    - False Negatives: 21
-    """)
-    
-    st.success(f"✅ {model} analysis completed successfully!")
-    st.info("💡 Full model .pkl files and complete training code available in GitHub repository")
-
-else:
-    st.info("👆 Please upload a CSV file to begin predictions")
-
-st.markdown("---")
-st.markdown("""
-### 📚 Complete Project Resources
-- **GitHub Repository:** [github.com/itsabhinavmandloi-pixel/credit-card-churn-prediction](https://github.com/itsabhinavmandloi-pixel/credit-card-churn-prediction)
-- **All 6 Models:** Trained and saved as .pkl files in model/ directory
-- **Training Code:** Complete Jupyter notebooks with all preprocessing and training steps
-- **Dataset:** BankChurners.csv from Kaggle
-""")
-
-st.markdown("**Created by:** Abhinav Mandloi | M.Tech AI/ML | BITS Pilani")
+    # FEATURE 4: Confusion Matrix
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import seaborn as sns
